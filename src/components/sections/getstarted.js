@@ -9,7 +9,6 @@ const GetStarted = () => (
     <GetStartedContainer>
       <GetStartedTitle>Be the first to get the beta</GetStartedTitle>
       <TryItButton>Get early access</TryItButton>
-      <Subtitle>No credit card required.</Subtitle>
     </GetStartedContainer>
     <Recaptcha
       sitekey="6LfBVeIUAAAAAI00UIk8FBRax197DNi5dWCZhF3C"
