@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import Recaptcha from 'react-recaptcha';
 
 import { Container, Section } from "../global"
 
@@ -10,6 +11,9 @@ const GetStarted = () => (
       <TryItButton>Get early access</TryItButton>
       <Subtitle>No credit card required.</Subtitle>
     </GetStartedContainer>
+    <Recaptcha
+      sitekey="6LfBVeIUAAAAAI00UIk8FBRax197DNi5dWCZhF3C"
+    />
   </StyledSection>
 )
 

@@ -23,7 +23,7 @@ const Footer = () => (
       <FooterColumn>
         <span>Company</span>
         <ul>
-          <li>About Uss</li>
+          <li>About Us</li>
           <li>Careers</li>
         </ul>
       </FooterColumn>
