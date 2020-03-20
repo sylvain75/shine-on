@@ -7,40 +7,24 @@ const encode = data => {
 };
 
 const init = state => {
-  console.log('state init', state);
   return { ...state, initialState };
 };
 
 const initialState = {
-  name: 'nametest',
-  email: 'name@email.com',
-  message: 'message string',
+  name: '',
+  email: '',
+  message: '',
 };
 
 function reducer(state, action) {
-  console.log('action HERE', action);
   return { ...state, [action.type]: action.payload };
-  // switch (action.type) {
-  //   case 'name':
-  //     return {name: action.payload};
-  //   case 'email':
-  //     return {count: action.payload};
-  //   case 'message':
-  //     return {message: action.payload};
-  //   default:
-  //     throw new Error();
-  // }
 }
 
 const ContactForm = props => {
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [message, setMessage] = useState('');
   const [{ name, email, message }, dispatch] = useReducer(
     reducer,
     initialState
   );
-  console.log('props HERE', props);
   const handleSubmit = e => {
     fetch('/', {
       method: 'POST',
@@ -64,7 +48,6 @@ const ContactForm = props => {
 
   const handleChange = e =>
     dispatch({ type: e.target.name, payload: e.target.value });
-  // const handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   return (
     <form
