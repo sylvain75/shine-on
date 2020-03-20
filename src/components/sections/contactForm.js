@@ -1,83 +1,107 @@
-import React from 'react';
-import styled from 'styled-components';
-import Recaptcha from 'react-recaptcha';
+import React, { useReducer } from 'react';
 
-import { Container, Section } from '../global';
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
 
-const ContactForm = () => (
-  <StyledSection>
-    <GetStartedContainer>
-      <GetStartedTitle>A Form will go here</GetStartedTitle>
-      <TryItButton>Get early access</TryItButton>
-      <Recaptcha
-        sitekey={process.env.GATSBY_RE_CAPTCHA_SITE_KEY}
-        onloadCallback={() => {
-          console.log('LOADED', );}}
-        verifyCallback={() => {
-          console.log('VERIFY', );}}
-        expiredCallback={() => {
-          console.log('EXPIRED', );}}
-        render='explicit'
-      />
-    </GetStartedContainer>
-  </StyledSection>
-);
+const init = state => {
+  console.log('state init', state);
+  return { ...state, initialState };
+};
+
+const initialState = {
+  name: 'nametest',
+  email: 'name@email.com',
+  message: 'message string',
+};
+
+function reducer(state, action) {
+  console.log('action HERE', action);
+  return { ...state, [action.type]: action.payload };
+  // switch (action.type) {
+  //   case 'name':
+  //     return {name: action.payload};
+  //   case 'email':
+  //     return {count: action.payload};
+  //   case 'message':
+  //     return {message: action.payload};
+  //   default:
+  //     throw new Error();
+  // }
+}
+
+const ContactForm = props => {
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [message, setMessage] = useState('');
+  const [{ name, email, message }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  console.log('props HERE', props);
+  const handleSubmit = e => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact',
+        'g-recaptcha-response': props.isNotRobot,
+        name,
+        email,
+        message,
+      }),
+    })
+      .then(res => {
+        console.log('res SUCCESS', res);
+        alert('Success!');
+      })
+      .catch(error => alert(error));
+
+    e.preventDefault();
+  };
+
+  const handleChange = e =>
+    dispatch({ type: e.target.name, payload: e.target.value });
+  // const handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      name="contact"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <p>
+        <label>
+          Your Name:{' '}
+          <input type="text" name="name" value={name} onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <label>
+          Your Email:{' '}
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </label>
+      </p>
+      <p>
+        <label>
+          Message:{' '}
+          <textarea name="message" value={message} onChange={handleChange} />
+        </label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+  );
+};
 
 export default ContactForm;
-
-const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
-  clip-path: polygon(0 0, 100% 14%, 100% 100%, 0% 100%);
-`;
-
-const GetStartedContainer = styled(Container)`
-  display: flex;
-  background-color: hotpink;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  //padding: 80px 0 40px;
-  padding: 20px 0 60px;
-`;
-
-const GetStartedTitle = styled.h3`
-  //margin: 0 auto 32px;
-  text-align: center;
-`;
-
-const TryItButton = styled.button`
-  font-weight: 500;
-  font-size: 14px;
-  color: white;
-  letter-spacing: 1px;
-  height: 60px;
-  display: block;
-  margin-left: 8px;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  cursor: pointer;
-  white-space: nowrap;
-  background: ${props => props.theme.color.secondary};
-  border-radius: 4px;
-  padding: 0px 40px;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial;
-  outline: 0px;
-  &:hover {
-    box-shadow: rgba(110, 120, 152, 0.22) 0px 2px 10px 0px;
-  }
-  @media (max-width: ${props => props.theme.screen.md}) {
-  }
-  @media (max-width: ${props => props.theme.screen.sm}) {
-    margin-left: 0;
-  }
-`;
-
-const Subtitle = styled.span`
-  ${props => props.theme.font_size.xxsmall}
-  padding-top: 16px;
-  font-size: 14px;
-  color: ${props => props.theme.color.primary};
-`;

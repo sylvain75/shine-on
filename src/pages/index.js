@@ -7,7 +7,7 @@ import Navigation from '../components/common/navigation/navigation';
 import Header from '../components/sections/header';
 import Features from '../components/sections/features';
 import Footer from '../components/sections/footer';
-import ContactForm from '../components/sections/ContactForm';
+import ContactFormSection from '../components/sections/contactFormSection';
 
 const IndexPage = () => (
   <Layout>
@@ -15,7 +15,7 @@ const IndexPage = () => (
     <Navigation />
     <Header />
     <Features />
-    <ContactForm />
+    <ContactFormSection />
     <Footer />
   </Layout>
 );
