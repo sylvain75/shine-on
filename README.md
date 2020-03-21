@@ -84,26 +84,6 @@ This starter uses [styled-components](https://www.styled-components.com/). The t
 
 ---
 
-### Netlify form usage example
+### Links
 
-In `header.js` replacing the existing `<HeaderForm>...</HeaderForm>` components with the following should provide a working example once your site is deployed:
-
-```
-<HeaderForm
- name="early-access"
- method="post"
- data-netlify-honeypot="bot-field"
- data-netlify="true"
->
-  <input type="hidden" name="bot-field" />
-  <input type="hidden" name="form-name" value="early-access" />
-  <HeaderInput
-   type="email"
-   placeholder="Your email"
-   name="email"
-   id="email"
-   required
-  />
-  <HeaderButton>Early access</HeaderButton>
-</HeaderForm>
-```
+[Background image handling](https://markoskon.com/gatsby-background-image-example/)

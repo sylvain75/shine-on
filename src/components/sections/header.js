@@ -2,56 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import Img from 'gatsby-image';
+import BgImage from '../common/bgImage';
 
 import { Container } from '../global';
 
+const bgColor = '#f8f8f8';
+    // placeholderImage: file(relativePath: { eq: "disability" }) {
+
 const Header = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      file(sourceInstanceName: { eq: "product" }, name: { eq: "green-skew" }) {
-        childImageSharp {
-          fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
+const disabilityData = useStaticQuery(graphql`
+  query {
+    file(sourceInstanceName: { eq: "product" }, name: { eq: "disability" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
-  `);
-
-  const handleSubmit = event => {
-    event.preventDefault();
-  };
+  }
+`);
 
   return (
     <HeaderWrapper id="top">
-      <Container>
+      {/*<Container>*/}
         <Flex>
-          <HeaderTextGroup>
-            <Subtitle>Personal Finance</Subtitle>
-            <h1>
-              All your money,
-              <br />
-              one account
-            </h1>
-            <h2>
-              We're building next generation personal finance tools. Sign up to
-              get early access.
-            </h2>
-            <HeaderForm onSubmit={handleSubmit}>
-              <HeaderInput placeholder="Your email" />
-              <HeaderButton>Early access</HeaderButton>
-            </HeaderForm>
-            <FormSubtitle>
-              Already have a beta account?{' '}
-              <FormSubtitleLink to="/">Sign in</FormSubtitleLink>
-            </FormSubtitle>
-          </HeaderTextGroup>
-          <ImageWrapper>
-            <StyledImage fluid={data.file.childImageSharp.fluid} />
-            <br />
-          </ImageWrapper>
+          <BgImage
+            title="astronaut"
+            fluid={disabilityData.file.childImageSharp.fluid}
+            overlayColor={`${bgColor}A8`}
+            height="100vh"
+          >
+            <div>I am a text</div>
+          </BgImage>
         </Flex>
-      </Container>
+      {/*</Container>*/}
     </HeaderWrapper>
   );
 };
@@ -59,8 +43,8 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.header`
-  background-color: #f8f8f8;
-  padding: 160px 0 80px 0;
+  background-color: ${bgColor};
+  padding: 120px 0 80px 0;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));
   @media (max-width: ${props => props.theme.screen.md}) {
@@ -102,9 +86,9 @@ const HeaderTextGroup = styled.div`
 
 const Flex = styled.div`
   display: grid;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-content: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   @media (max-width: ${props => props.theme.screen.md}) {
     grid-template-columns: 1fr;
     grid-gap: 64px;
