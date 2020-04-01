@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
-import Recaptcha from 'react-google-recaptcha';
+// import Recaptcha from 'react-google-recaptcha';
+import Axios from 'axios'
 
 const encode = data => {
   return Object.keys(data)
@@ -21,36 +22,60 @@ function reducer(state, action) {
   return { ...state, [action.type]: action.payload };
 }
 
+const sendEmail = formData => {
+  Axios.post(
+    'https://us-central1-shine-form.cloudfunctions.net/submit',
+    formData
+  ).then((res) => {
+    console.log(' HERE%', res);
+  })
+    // .then(res => {
+    //   db.collection('emails').add({
+    //     name: formData.name,
+    //     email: formData.email,
+    //     message: formData.message,
+    //     time: new Date(),
+    //   })
+    // })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
 const ContactForm = props => {
   const [{ name, email, message }, dispatch] = useReducer(
     reducer,
     initialState
   );
   const recaptchaRef = React.createRef();
-
-  const handleSubmit = e => {
-    console.log('name HERE', name, email, message, props.isNotRobot);
-    const form = e.target;
-    const recaptchaValue = recaptchaRef.current.getValue();
-    console.log('refe HERE', recaptchaValue);
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': form.getAttribute('name'),
-        'g-recaptcha-response': recaptchaValue,
-        name,
-        email,
-        message,
-      }),
-    })
-      .then(res => {
-        console.log('res SUCCESS', res);
-        alert('Success!');
-      })
-      .catch(error => alert(error));
-
+  const handleSubmit = async e => {
     e.preventDefault();
+    const result = await sendEmail({
+      name,
+      email,
+      message,
+    });
+    console.log('result HERE', result);
+
+    // const form = e.target;
+    // const recaptchaValue = recaptchaRef.current.getValue();
+    // fetch('/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: encode({
+    //     'form-name': form.getAttribute('name'),
+    //     'g-recaptcha-response': recaptchaValue,
+    //     name,
+    //     email,
+    //     message,
+    //   }),
+    // })
+    //   .then(res => {
+    //     alert('Success!');
+    //   })
+    //   .catch(error => alert(error));
+    //
+    // e.preventDefault();
   };
 
   const handleChange = e =>
@@ -92,10 +117,10 @@ const ContactForm = props => {
       <p>
         <button type="submit">Send</button>
       </p>
-      <Recaptcha
-        ref={recaptchaRef}
-        sitekey={process.env.GATSBY_RE_CAPTCHA_SITE_KEY}
-      />
+      {/*<Recaptcha*/}
+      {/*  ref={recaptchaRef}*/}
+      {/*  sitekey={process.env.GATSBY_RE_CAPTCHA_SITE_KEY}*/}
+      {/*/>*/}
     </form>
   );
 };

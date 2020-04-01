@@ -22,7 +22,20 @@ module.exports = {
         ],
       },
     },
-
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+          databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+          projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+          appId: process.env.REACT_APP_FIREBASE_APP_ID,
+          authDomain: "<YOUR_FIREBASE_AUTH_DOMAIN>",
+          storageBucket: "<YOUR_FIREBASE_STORAGE_BUCKET>",
+          messagingSenderId: "<YOUR_FIREBASE_MESSAGING_SENDER_ID>"
+        }
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

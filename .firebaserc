@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "shine-form",
+    "firebase-gatsby-deploy": "shine-form"
+  }
+}

@@ -53,7 +53,7 @@ typings/
 
 # dotenv environment variables file
 .env.development
-# .env.production
+.env.production
 
 
 # gatsby files
@@ -73,3 +73,5 @@ yarn-error.log
 .idea/
 
 notes.md
+
+.firebase

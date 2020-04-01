@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Recaptcha from "react-google-recaptcha";
+// import Recaptcha from "react-google-recaptcha";
 
 import { Container, Section } from '../global';
 import ContactForm from './contactForm';
 
 const ContactFormSection = () => {
-  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
   return (
-    <StyledSection>
+    <StyledSection id="contact us">
       <GetStartedContainer>
-        <GetStartedTitle>A Form will go here</GetStartedTitle>
-        <ContactForm isNotRobot={isCaptchaVerified} />
+        <GetStartedTitle>Leave us a message</GetStartedTitle>
+        <ContactForm />
       </GetStartedContainer>
     </StyledSection>
   );

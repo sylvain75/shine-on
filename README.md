@@ -66,6 +66,15 @@ gatsby serve
 
 ---
 
+### Debugging
+
+Remove `package-lock.json` and/or `yarn.lock`
+Issue `gatsby clean` to purge any stale data.
+Remove `node_modules` folder.
+Install the dependencies again with your package manager of choice, either `npm` or `yarn`.
+Issue `gatsby develop` and see if the error does not pop back.
+---
+
 ### Styles
 
 This starter uses [styled-components](https://www.styled-components.com/). The theme file contains the base styles `src/styles/theme.js` and the global styles file contains basic element styles and a style reset `src/styles/GlobalStyles.js`.
@@ -87,3 +96,13 @@ This starter uses [styled-components](https://www.styled-components.com/). The t
 ### Links
 
 [Background image handling](https://markoskon.com/gatsby-background-image-example/)
+
+## Firebase
+
+`firebase login`
+`firebase init`
+`firebase deploy`
+
+https://www.gatsbyjs.org/docs/deploying-to-firebase/
+During the deploy process 
+The next step Firebase CLI will ask “Configure as a single-page app?” make sure you answer no (N) to this as Gatsby will generate all the URL paths for you as provides Server side rendering out of the box.

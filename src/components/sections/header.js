@@ -7,34 +7,36 @@ import BgImage from '../common/bgImage';
 import { Container } from '../global';
 
 const bgColor = '#f8f8f8';
-    // placeholderImage: file(relativePath: { eq: "disability" }) {
+// placeholderImage: file(relativePath: { eq: "disability" }) {
 
 const Header = () => {
-const disabilityData = useStaticQuery(graphql`
-  query {
-    file(sourceInstanceName: { eq: "product" }, name: { eq: "disability" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
+  const disabilityData = useStaticQuery(graphql`
+    query {
+      file(sourceInstanceName: { eq: "product" }, name: { eq: "disability" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
-  }
-`);
+  `);
 
   return (
     <HeaderWrapper id="top">
       {/*<Container>*/}
-        <Flex>
-          <BgImage
-            title="astronaut"
-            fluid={disabilityData.file.childImageSharp.fluid}
-            overlayColor={`${bgColor}A8`}
-            height="100vh"
-          >
-            <div>I am a text</div>
-          </BgImage>
-        </Flex>
+      <Flex>
+        <StyledBackgroundImage
+          title="astronaut"
+          fluid={disabilityData.file.childImageSharp.fluid}
+          overlayColor={`${bgColor}BF`}
+          height="100vh"
+        >
+          <StyledBackgroundImageText>
+            Leaders in Disability Support!
+          </StyledBackgroundImageText>
+        </StyledBackgroundImage>
+      </Flex>
       {/*</Container>*/}
     </HeaderWrapper>
   );
@@ -50,6 +52,18 @@ const HeaderWrapper = styled.header`
   @media (max-width: ${props => props.theme.screen.md}) {
   }
 `;
+
+const StyledBackgroundImage = styled(BgImage)`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledBackgroundImageText = styled.div`
+  font-size: 50px;
+  color: ${props => props.theme.color.secondary};
+`;
+
 const Subtitle = styled.h5`
   font-size: 16px;
   color: ${props => props.theme.color.accent};
