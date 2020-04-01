@@ -29,10 +29,8 @@ const ContactForm = props => {
   const recaptchaRef = React.createRef();
 
   const handleSubmit = e => {
-    console.log('name HERE', name, email, message, props.isNotRobot);
     const form = e.target;
     const recaptchaValue = recaptchaRef.current.getValue();
-    console.log('refe HERE', recaptchaValue);
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -45,7 +43,6 @@ const ContactForm = props => {
       }),
     })
       .then(res => {
-        console.log('res SUCCESS', res);
         alert('Success!');
       })
       .catch(error => alert(error));

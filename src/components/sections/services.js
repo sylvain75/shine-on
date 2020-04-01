@@ -3,45 +3,34 @@ import styled from 'styled-components';
 
 import { Section, Container } from '../global';
 
-const Features = () => (
-  <Section id="features">
+const Services = () => (
+  <Section id="services">
     <StyledContainer>
-      <Subtitle>Features</Subtitle>
+      <Subtitle>Services</Subtitle>
       <SectionTitle>Smart money management</SectionTitle>
       <FeaturesGrid>
         <FeatureItem>
-          <FeatureTitle>Notifications</FeatureTitle>
+          <FeatureTitle>Support</FeatureTitle>
           <FeatureText>
-            Receive budget and spending alerts based on your favorite triggers.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Security</FeatureTitle>
+          <FeatureTitle>Care</FeatureTitle>
           <FeatureText>
-            Your data is always safe with us as we use the latest security
-            protocols.
+            Adipisci aperiam dolor doloribus ducimus eos inventore.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Automation</FeatureTitle>
+          <FeatureTitle>Assitance</FeatureTitle>
           <FeatureText>
-            Create smart automated workflows and triggers for your money.
+            Aperiam dolor doloribus ducimus eos inventore.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Aggregation</FeatureTitle>
+          <FeatureTitle>Experience</FeatureTitle>
           <FeatureText>
-            Easily link up to 5 banks to your finance account.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-          <FeatureTitle>Payments</FeatureTitle>
-          <FeatureText>Send money to friends and family with ease.</FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-          <FeatureTitle>Rewards</FeatureTitle>
-          <FeatureText>
-            High interest and rewards for hitting your goals.
+            Illum labore maxime molestias non odio quisquam saepe suscipit.
           </FeatureText>
         </FeatureItem>
       </FeaturesGrid>
@@ -49,7 +38,7 @@ const Features = () => (
   </Section>
 );
 
-export default Features;
+export default Services;
 
 const StyledContainer = styled(Container)``;
 

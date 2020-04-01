@@ -15,7 +15,7 @@ import {
   ActionsContainer,
 } from './style';
 
-const NAV_ITEMS = ['Features', 'Product', 'Pricing', ''];
+const NAV_ITEMS = ['Services', 'Contact Us'];
 
 export default class Navigation extends Component {
   state = {
@@ -70,6 +70,7 @@ export default class Navigation extends Component {
 
   render() {
     const { mobileMenuOpen } = this.state;
+    console.log('this.state.hasScrolled HERE', this.state.hasScrolled);
 
     return (
       <Nav {...this.props} scrolled={this.state.hasScrolled}>
