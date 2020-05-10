@@ -14,7 +14,7 @@ const ContactFormSection = () => {
       </GetStartedContainer>
     </StyledSection>
   );
-}
+};
 
 export default ContactFormSection;
 

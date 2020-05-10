@@ -106,3 +106,7 @@ This starter uses [styled-components](https://www.styled-components.com/). The t
 https://www.gatsbyjs.org/docs/deploying-to-firebase/
 During the deploy process 
 The next step Firebase CLI will ask “Configure as a single-page app?” make sure you answer no (N) to this as Gatsby will generate all the URL paths for you as provides Server side rendering out of the box.
+
+## Firebase & Form
+$ `firebase functions:config:set gmail.email=”<youremail@gamil.com>” gmail.password=”<gmailpassword>”`
+$ `firebase functions:config:get`
